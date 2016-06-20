@@ -1,0 +1,7 @@
+Array
+sum(abc) as abc
+sum(abc) as abcsum(dc) as dcsum(fg) as fgsum(abc) as abcsum(dc) as dcsum(fg) as fgsum(abc) as abcsum(dc) as dcsum(fg) as fgArray
+Array
+sum(abc) as abcsum(dc) as dcsum(fg) as fg\r\nsum(abc) as abcsum(dc) as dcsum(fg) as fg\r\nsum(abc) as abcsum(dc) as dcsum(fg) as fg\r\nsum(abc) as abcsum(dc) as dcsum(fg) as fg\r\nsum(abc) as abcsum(dc) as dcsum(fg) as fg\r\nsum(abc) as abcsum(dc) as dcsum(fg) as fg\r\nsum(abc) as abcsum(dc) as dcsum(fg) as fg\r\nsum(abc) as abcsum(dc) as dcsum(fg) as fg\r\nsum(abc) as abcsum(dc) as dcsum(fg) as fg\r\nArray
+Array
+Array

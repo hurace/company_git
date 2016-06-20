@@ -1,0 +1,90 @@
+<meta http-equiv="Access-Control-Allow-Origin" content="*.ttlsa.com">
+<style>
+#picker{position: relative;}
+#picker div{width:54px;height:20px;}
+</style>
+<link rel="stylesheet" type="text/css" href="./webuploader/dist/webuploader.css">
+<script type="text/javascript" src="./jquery-1.7.2.min.js"></script>
+<script type="text/javascript" 	src="./webuploader/dist/webuploader.js"></script>
+
+<div id="uploader" class="wu-example">
+    <!--用来存放文件信息-->
+    <div id="thelist" class="uploader-list"></div>
+    <div class="btns">
+        <div id="picker">选择文件</div>
+        <button id="ctlBtn" class="btn btn-default">开始上传</button>
+    </div>
+</div>
+
+<script>
+var state = 'pending';
+var up_excel_url='http://192.168.0.211/egouhr/www/egou/index.php/shangjia/cardgroup/upexcel';
+var up_excel_url='http://localhost/mytest/upload/upload.php';
+var uploader = WebUploader.create({
+	// swf文件路径
+	swf:  'http://localhost/mytest/webuploader/dist/Uploader.swf',
+	// 文件接收服务端。
+	server: up_excel_url,
+	pick: '#picker',
+	accept: {
+	   title: 'excel',
+	   extensions: 'csv',
+	   mimeTypes: '.csv',
+   },
+   fileSingleSizeLimit:4*1024*1024,
+});
+
+uploader.on( 'all', function( type ) {
+    if ( type === 'startUpload' ) {
+        state = 'uploading';
+    } else if ( type === 'stopUpload' ) {
+        state = 'paused';
+    } else if ( type === 'uploadFinished' ) {
+        state = 'done';
+    }
+
+    /* if ( state === 'uploading' ) {
+        $btn.text('暂停上传');
+    } else {
+        $btn.text('开始上传');
+    } */
+});
+
+var $list = $("#thelist");
+// 当有文件被添加进队列的时候
+uploader.on( 'fileQueued', function( file ) {
+    $list.append( '<div id="' + file.id + '" class="item">' +
+        '<h4 class="info">' + file.name + '</h4>' +
+        '<p class="state">等待上传...</p>' +
+    '</div>' );
+});
+
+
+
+
+$("#ctlBtn").click(function(){
+	console.log(state)
+	if ( state === 'uploading' ) {
+       	
+	} else {
+		console.log(1111)
+		uploader.upload();
+		console.log(2222)
+		uploader.on( 'uploadSuccess', function( file,ret ) {
+		console.log(file);
+		console.log(ret);return false;
+		 if(ret.msg && ret.code==0){
+			 check_result.excel_name=ret.msg;
+			   check_result.pre_name=ret.file_name;
+			   console.log(ret);
+		 }else{
+			$('.excel_name').val('');
+			alert('文件上传失败,请重新选择');
+		 }
+		 uploader.reset();
+		});
+		console.log(state)
+	}
+});
+
+</script>
